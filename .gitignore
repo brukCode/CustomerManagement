@@ -1,0 +1,75 @@
+
+
+
+
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+
+# Ignore build artifacts
+*.jar
+*.war
+*.ear
+
+# Ignore Maven wrapper files except maven-wrapper.jar
+.mvn/
+!.mvn/wrapper/maven-wrapper.jar
+mvnw
+mvnw.cmd
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore logs and temp files
+*.log
+logs/
+tmp/
+
+# Ignore IDE-specific files
+### Eclipse ###
+.classpath
+.project
+.settings/
+.apt_generated
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+
+# Ignore Node.js / Frontend related files (if applicable)
+node_modules/
+dist/
+build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
