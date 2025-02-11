@@ -12,7 +12,7 @@ import com.bk.Customer.Management.service.CustomerService;
 import com.bk.Customer.Management.DTO.CustomerDto;
 
 @RestController
-@RequestMapping("/customers") // Base path for all customer endpoints
+@RequestMapping("/customers") 
 public class CustomerController {
 
     @Autowired
@@ -35,18 +35,14 @@ public class CustomerController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
     
-    /**
-     * Get all customers
-     */
+  
     @GetMapping("/getAll")
     public ResponseEntity<List<Customer>> getAllCustomers() {
         List<Customer> customers = customerService.getAllCustomers();
         return ResponseEntity.ok(customers);
     }
 
-    /**
-     * Get a customer by ID
-     */
+    
     @GetMapping("/get/{id}")
     public ResponseEntity<CustomerDto> getCustomerById(@PathVariable String id) {
         CustomerDto customer = customerService.getCustomerById(id);
@@ -58,9 +54,7 @@ public class CustomerController {
         return ResponseEntity.ok(customer);
     }
 
-    /**
-     * Update an existing customer
-     */
+    
     @PutMapping("/update/{id}")
     public ResponseEntity<CustomerDto> updateCustomer(@PathVariable String id, @RequestBody Customer customerDetails) {
         CustomerDto updatedCustomer = customerService.updateCustomer(id, customerDetails);
@@ -72,18 +66,34 @@ public class CustomerController {
         return ResponseEntity.ok(updatedCustomer);
     }
 
-    /**
-     * Delete a customer by ID
-     */
-//    @DeleteMapping("/delete/{id}")
-//    public ResponseEntity<Void> deleteCustomer(@PathVariable String id) {
-//        boolean deleted = customerService.deleteCustomer(id);
-//        
-//        if (!deleted) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-//        }
-//        
-//        return ResponseEntity.noContent().build();
-//    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteCustomer(@PathVariable String id) {
+        boolean deleted = customerService.deleteCustomer(id);
+        
+        if (!deleted) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        
+        return ResponseEntity.noContent().build();
+    }
+    
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<String> deleteAllCustomers() {
+        boolean deleted = customerService.deleteAllCustomers();
+        
+        if (deleted) {
+            return ResponseEntity.ok("✅ All customers deleted successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                                 .body("❌ No customers found to delete.");
+        }
+    
+ 
+
+    }
+    
 }
+
+
 

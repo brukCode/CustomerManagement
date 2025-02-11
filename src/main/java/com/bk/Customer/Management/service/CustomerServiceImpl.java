@@ -25,9 +25,8 @@ public class CustomerServiceImpl implements CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    /**
-     * Register a new customer
-     */
+  
+    
     @Override
     public CustomerDto registerCustomer(Customer customerInfo) {
         log.info("🔍 Registering customer: {}", customerInfo.getEmail());
@@ -39,18 +38,14 @@ public class CustomerServiceImpl implements CustomerService {
         return new CustomerDto(savedCustomer);
     }
 
-    /**
-     * Retrieve all customers
-     */
+     
     @Override
     public List<Customer> getAllCustomers() {
         log.info("📋 Fetching all customers...");
         return customerRepository.findAll();
     }
 
-    /**
-     * Retrieve a customer by ID
-     */
+    
     @Override
     public CustomerDto getCustomerById(String id) {
         log.info("🔍 Fetching customer with ID: {}", id);
@@ -69,9 +64,6 @@ public class CustomerServiceImpl implements CustomerService {
         return new CustomerDto(customer.get());
     }
 
-    /**
-     * Update an existing customer
-     */
     @Override
     public CustomerDto updateCustomer(String id, Customer customerDetails) {
         log.info("🔄 Updating customer with ID: {}", id);
@@ -98,9 +90,7 @@ public class CustomerServiceImpl implements CustomerService {
         return new CustomerDto(updatedCustomer);
     }
 
-    /**
-     * Delete a customer by ID
-     */
+    
     @Override
     public boolean deleteCustomer(String id) {
         log.info("🗑 Deleting customer with ID: {}", id);
@@ -114,22 +104,29 @@ public class CustomerServiceImpl implements CustomerService {
             return false;
         }
 
-        // ✅ Correct delete method
+      
         customerRepository.deleteById(customerId);
         log.info("✅ Customer deleted successfully: {}", id);
         
         return true;
     }
-    
-//    @DeleteMapping("/deleteAll")
-//    public ResponseEntity<String> deleteAllCustomers() {
-//        boolean deleted = customerRepository.de
-//        if (deleted) {
-//            return ResponseEntity.ok("✅ All customers deleted successfully.");
-//        } else {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-//                                 .body("❌ No customers found to delete.");
-//        }
-//    }
+
+
+
+    @Override
+    public boolean deleteAllCustomers() { 
+        long count = customerRepository.count();
+
+        if (count == 0) {
+            return false; // No customers found
+        }
+
+        customerRepository.deleteAll();
+        return true; // Successfully deleted
+    }
+
+      
+
+
 
 }
