@@ -18,15 +18,13 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    /**
-     * Register a new customer
-     */
+   
     @PostMapping("/register")
     public ResponseEntity<CustomerDto> register(@RequestBody(required = false) Customer customerInfo) {
         if (customerInfo == null) {
             return ResponseEntity.badRequest().body(
                 CustomerDto.builder()
-                   // .note("❌ Request body is missing or invalid.")
+                 
                     .build()
             );
         }

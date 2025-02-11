@@ -22,7 +22,7 @@ public class CustomerDto {
     private Object address;
     private Object customFields;
 
-    // ✅ Constructor to accept a Customer object
+  
     public CustomerDto(Customer customer) {
         this.customerId = customer.getId();
         this.firstName = customer.getFirstName();

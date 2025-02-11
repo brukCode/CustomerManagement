@@ -12,7 +12,7 @@ public interface CustomerService {
     CustomerDto updateCustomer(String id, Customer customerDetails); 
     boolean deleteCustomer(String id); 
  
-        boolean deleteAllCustomers(); // ✅ Correct method name
+        boolean deleteAllCustomers(); 
     }
 
     
